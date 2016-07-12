@@ -73,3 +73,21 @@ curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/profile
 ```json
 { "email": "john@mcclane.com" }
 ```
+
+### GET User's List
+
+#### Request
+```
+curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/users
+```
+
+#### Response
+```json
+[
+  { "id": 1, "name": "John McClane" },
+  { "id": 2, "name": "Bruce Wayne" },
+  { "id": 3, "name": "Vito Corleone" }
+]
+```
+
+Note: You have to add `User#name`

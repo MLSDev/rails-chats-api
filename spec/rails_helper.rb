@@ -12,6 +12,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include Authorization
 end
 
 # Checks for pending migrations before tests are run.

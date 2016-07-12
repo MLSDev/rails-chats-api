@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
+RSpec.describe ProfilesController, type: :controller do
   describe '#create.json' do
     let(:user) { double }
 
@@ -22,6 +22,20 @@ RSpec.describe UsersController, type: :controller do
       before { post :create, user: params, format: :json }
 
       it { should render_template :errors }
+    end
+  end
+
+  context do
+    let(:user) { double }
+
+    before { sign_in user }
+
+    describe '#show.json' do
+      before { get :show, format: :json }
+
+      it { should render_template :show }
+
+      its(:resource) { should eq user }
     end
   end
 end

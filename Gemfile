@@ -7,10 +7,11 @@ gem 'bcrypt'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rspec-activemodel-mocks'
 end
 
 group :test do
   gem 'shoulda-matchers'
   gem 'rspec-its'
+  gem 'rspec-activemodel-mocks'
+  gem 'shoulda-callback-matchers'
 end

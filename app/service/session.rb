@@ -17,6 +17,12 @@ class Session
     end
   end
 
+  def save
+    return false unless valid?
+
+    user.create_auth_token && true
+  end
+
   private
   def user
     @user ||= User.find_by email: @email

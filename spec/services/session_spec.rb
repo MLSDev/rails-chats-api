@@ -50,4 +50,24 @@ RSpec.describe Session do
       its([:password]) { should eq ['is invalid'] }
     end
   end
+
+  describe '#save' do
+    context do
+      before { expect(subject).to receive(:valid?).and_return(false) }
+
+      its(:save) { should eq false }
+    end
+
+    context do
+      let(:user) { double }
+
+      before { expect(subject).to receive(:valid?).and_return(true) }
+
+      before { expect(subject).to receive(:user).and_return(user) }
+
+      before { expect(user).to receive(:create_auth_token).and_return('x-y-z') }
+
+      its(:save) { should eq true }
+    end
+  end
 end

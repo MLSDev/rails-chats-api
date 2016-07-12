@@ -52,18 +52,24 @@ curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/profile
 
 ### Sign Out
 
+#### Request
 ```
 curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' -X DELETE localhost:3000/session
 ```
 
+#### Response
+```json
+200 OK
+```
+
 ### Customize Profile Info
 
-Request
+#### Request
 ```
 curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/profile
 ```
 
-Response
+#### Response
 ```json
 { "email": "john@mcclane.com" }
 ```

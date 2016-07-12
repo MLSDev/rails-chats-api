@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712072140) do
+ActiveRecord::Schema.define(version: 20160712122940) do
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string   "value"
@@ -21,9 +21,13 @@ ActiveRecord::Schema.define(version: 20160712072140) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chats_users", id: false, force: :cascade do |t|
+    t.integer "chat_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

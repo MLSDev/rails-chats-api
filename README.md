@@ -91,3 +91,22 @@ curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/users
 ```
 
 Note: You have to add `User#name`
+
+### Create Chat
+
+#### Request
+```
+curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' -d 'chat[user_ids][]=2&chat[user_ids][]=3' localhost:3000/chats
+```
+
+#### Response
+```json
+{
+  "id": 1,
+  "users": [
+    { "id": 1, "name": "John McClane" },
+    { "id": 2, "name": "Bruce Wayne" },
+    { "id": 3, "name": "Vito Corleone" }
+  ]
+}
+```

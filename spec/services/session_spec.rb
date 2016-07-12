@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Session do
   subject { Session.new email: 'kathy@hartlova.com', password: 'bigboobs' }
 
+  it { should delegate_method(:auth_token).to(:user) }
+
+  it { should delegate_method(:auth_token_value).to(:auth_token).as(:value) }
+
   describe '#user' do
     before { expect(User).to receive(:find_by).with(email: 'kathy@hartlova.com').and_return(:user) }
 
@@ -69,5 +73,11 @@ RSpec.describe Session do
 
       its(:save) { should eq true }
     end
+  end
+
+  describe '#as_json' do
+    before { expect(subject).to receive(:auth_token_value).and_return('xxxx-yyyy-zzzz') }
+
+    its(:as_json) { should eq auth_token: 'xxxx-yyyy-zzzz' }
   end
 end

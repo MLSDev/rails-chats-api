@@ -1,6 +1,10 @@
 class Session
   include ActiveModel::Validations
 
+  delegate :auth_token, to: :user
+
+  delegate :value, to: :auth_token, prefix: true
+
   def initialize params={}
     params = params&.symbolize_keys || {}
 
@@ -21,6 +25,10 @@ class Session
     return false unless valid?
 
     user.create_auth_token && true
+  end
+
+  def as_json *args
+    { auth_token: auth_token_value }
   end
 
   private

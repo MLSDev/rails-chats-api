@@ -127,4 +127,4 @@ curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' -d 'message[text]=Yipikaye
 }
 ```
 
-Note: Only participants can create message in a chat.
+Note: Only participants can create `Message` in a `Chat`.

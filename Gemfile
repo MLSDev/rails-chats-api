@@ -3,11 +3,14 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 gem 'sqlite3'
 gem 'puma'
+gem 'bcrypt'
 
 group :development, :test do
-  gem 'shoulda-matchers'
+  gem 'rspec-rails'
+  gem 'rspec-activemodel-mocks'
 end
 
-group :development do
-  gem 'rspec-rails'
+group :test do
+  gem 'shoulda-matchers'
+  gem 'rspec-its'
 end

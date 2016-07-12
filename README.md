@@ -1,23 +1,30 @@
-## Clone repository
+## Install
+
+### Clone repository
 ```
 git clone https://github.com/MLSDev/rails-chats-api
 ```
 
+### Install gems
 ```
 cd rails-chats-api
 ```
 
-## Install gems
 ```
 bundle install
 ```
 
-## Run migrations
+### Run migrations
 ```
 rake db:migrate
 ```
 
-## Run specs
+### Run specs
 ```
 rake
+```
+
+### Run server
+```
+rails s
 ```

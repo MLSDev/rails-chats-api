@@ -43,3 +43,7 @@ curl -d 'user[email]john@mcclane.com&user[password]=superhero&user[password_conf
 curl -d 'session[email]=john@mcclane.com&session[password]=superhero' localhost:3000/session
 ```
 
+### Get own Profile info
+```
+curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/profile
+```

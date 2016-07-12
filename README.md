@@ -47,3 +47,11 @@ curl -d 'session[email]=john@mcclane.com&session[password]=superhero' localhost:
 ```
 curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' localhost:3000/profile
 ```
+
+## TODO
+
+### Sign Out
+```
+curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' -X DELETE localhost:3000/session
+```
+

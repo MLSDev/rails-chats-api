@@ -28,3 +28,11 @@ rake
 ```
 rails s
 ```
+
+## API documentation
+
+### Sign Up
+```
+curl -d 'user[email]john@mcclane.com&user[password]=superhero&user[password_confirmation]=superhero' localhost:3000/profile
+```
+

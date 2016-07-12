@@ -110,3 +110,19 @@ curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' -d 'chat[user_ids][]=2&cha
   ]
 }
 ```
+
+### Create Message
+
+#### Request
+```
+curl -H 'Authorization: Token token="XXXX-YYYY-ZZZZ"' -d 'message[text]=Yipikaye ... guys' localhost:3000/chats/1/messages
+```
+
+#### Response
+```json
+{
+  "id": 1,
+  "text": "Yipikaye ... guys",
+  "chat_id": 1
+}
+```

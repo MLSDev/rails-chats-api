@@ -35,7 +35,7 @@ rails s
 
 ### Sign Up
 ```
-curl -d 'user[email]john@mcclane.com&user[password]=superhero&user[password_confirmation]=superhero' localhost:3000/profile
+curl -d 'user[email]=john@mcclane.com&user[password]=superhero&user[password_confirmation]=superhero' localhost:3000/profile
 ```
 
 ### Sign In

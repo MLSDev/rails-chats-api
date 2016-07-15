@@ -11,6 +11,22 @@ class ApplicationController < ActionController::Base
     head :unauthorized
   end
 
+  rescue_from ActionController::ParameterMissing do |exception|
+    @exception = exception
+
+    render :exception, status: :unprocessable_entity
+  end
+
+  rescue_from ActiveRecord::RecordInvalid, ActiveModel::StrictValidationFailed do
+    render :errors, status: :unprocessable_entity
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    @exception = 'Not Found'
+
+    render :exception, status: :not_found
+  end
+
   def create
     render :errors unless resource.save
   end

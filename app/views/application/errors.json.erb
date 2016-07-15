@@ -1,1 +1,1 @@
-<%= sanitize resource.errors.to_json %>
+<%= sanitize({ errors: resource.errors }.to_json) %>

@@ -14,6 +14,7 @@ gem 'uglifier'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'listen'
 end
 
 group :test do

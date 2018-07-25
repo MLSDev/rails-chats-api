@@ -10,6 +10,7 @@ gem 'rails', '~> 5.2'
 gem 'sqlite3'
 gem 'puma'
 gem 'bcrypt'
+gem 'uglifier'
 
 group :development, :test do
   gem 'rspec-rails'

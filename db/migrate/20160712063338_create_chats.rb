@@ -1,4 +1,4 @@
-class CreateChats < ActiveRecord::Migration
+class CreateChats < ActiveRecord::Migration[4.2]
   def change
     create_table :chats do |t|
       t.timestamps null: false

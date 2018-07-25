@@ -15,6 +15,7 @@ gem 'uglifier'
 group :development, :test do
   gem 'rspec-rails'
   gem 'listen'
+  gem 'pry-byebug'
 end
 
 group :test do
@@ -22,4 +23,5 @@ group :test do
   gem 'rspec-its'
   gem 'rspec-activemodel-mocks'
   gem 'shoulda-callback-matchers'
+  gem 'rails-controller-testing'
 end

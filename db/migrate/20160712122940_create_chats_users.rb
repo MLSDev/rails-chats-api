@@ -1,4 +1,4 @@
-class CreateChatsUsers < ActiveRecord::Migration
+class CreateChatsUsers < ActiveRecord::Migration[4.2]
   def change
     create_table :chats_users, id: false do |t|
       t.integer :chat_id

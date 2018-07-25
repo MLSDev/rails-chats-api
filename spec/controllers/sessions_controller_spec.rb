@@ -2,22 +2,26 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   describe '#create.json' do
-    before { @session = double }
+    let(:session) { double }
 
-    before { expect(Session).to receive(:new).with(email: 'kathy@hartlova.com', password: 'bigboobs').and_return(@session) }
+    let(:params) { { session: { email: 'kathy@hartlova.com', password: 'bigboobs' } } }
+
+    let(:permitted_params) { permit_params! params, :session }
+
+    before { expect(Session).to receive(:new).with(permitted_params).and_return(session) }
 
     context do
-      before { expect(@session).to receive(:save).and_return(true) }
+      before { expect(session).to receive(:save).and_return(true) }
 
-      before { post :create, session: { email: 'kathy@hartlova.com', password: 'bigboobs' }, format: :json }
+      before { post :create, params: params, format: :json }
 
       it { should render_template :create }
     end
 
     context do
-      before { expect(@session).to receive(:save).and_return(false) }
+      before { expect(session).to receive(:save).and_return(false) }
 
-      before { post :create, session: { email: 'kathy@hartlova.com', password: 'bigboobs' }, format: :json }
+      before { post :create, params: params, format: :json }
 
       it { should render_template :errors }
     end

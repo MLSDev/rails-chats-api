@@ -6,7 +6,7 @@ class Session
   delegate :value, to: :auth_token, prefix: true
 
   def initialize params={}
-    params = params&.symbolize_keys || {}
+    params = params || {}
 
     @email = params[:email]
 

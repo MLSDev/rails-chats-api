@@ -16,6 +16,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'listen'
   gem 'pry-byebug'
+  gem 'factory_bot_rails'
 end
 
 group :test do

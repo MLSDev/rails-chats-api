@@ -12,6 +12,10 @@ class ProfilesController < ApplicationController
     @user ||= current_user
   end
 
+  def collection
+    @users ||= User.all
+  end
+
   def resource_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end

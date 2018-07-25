@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'puma'
 gem 'bcrypt'
 gem 'uglifier'
+gem 'draper'
 
 group :development, :test do
   gem 'rspec-rails'

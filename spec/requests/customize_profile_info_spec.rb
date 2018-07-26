@@ -14,7 +14,7 @@ RSpec.describe 'CustomizeProfileInfo', type: :request do
   before { get '/profile', params: {} , headers: headers }
 
   context do
-    it('returns authenticated user') { expect(JSON.parse(response.body)).to eq user_response }
+    it("returns profile's info") { expect(JSON.parse(response.body)).to eq user_response }
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
   end

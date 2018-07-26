@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MLSDev/rails-chats-api.svg?branch=master)](https://travis-ci.org/MLSDev/rails-chats-api)
+
 # Rails Chats API - Sample Application
 
 ## Install

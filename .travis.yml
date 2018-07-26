@@ -1,0 +1,21 @@
+language: ruby
+
+sudo: false
+cache: bundler
+
+rvm:
+  - 2.3.1
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+
+before_script:
+  - gem install bundler --no-document
+
+script:
+  - RAILS_ENV=test bundle exec rake db:drop
+  - RAILS_ENV=test bundle exec rake db:create
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - bundle exec rake spec

@@ -3,20 +3,18 @@ require 'rails_helper'
 RSpec.describe 'CustomizeProfileInfo', type: :request do
   let(:user) { create(:user)}
 
-  let(:user_response) { { "email" => user.email } }
-
   let(:token) { AuthToken.create(user_id: user.id) }
 
   let(:value) { token.value }
 
   let(:headers) { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
-  before { get '/profile', params: {} , headers: headers }
+  before { delete '/session', params: {} , headers: headers }
 
   context 'with valid params' do
-    it('returns authenticated user') { expect(JSON.parse(response.body)).to eq user_response }
+    it("destroys current_user's auth_token") { expect(user.auth_token).to eq nil }
 
-    it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
+    it('returns HTTP Status Code 204') { expect(response).to have_http_status 204 }
   end
 
   context 'with invalid params' do

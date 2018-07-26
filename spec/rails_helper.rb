@@ -15,6 +15,7 @@ RSpec.configure do |config|
 
   config.include Authorization
   config.include Permitter
+  config.include FactoryBot::Syntax::Methods
 end
 
 # Checks for pending migrations before tests are run.

@@ -18,6 +18,7 @@ group :development, :test do
   gem 'listen'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :test do

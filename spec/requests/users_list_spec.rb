@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'CustomizeProfileInfo', type: :request do
+RSpec.describe 'UsersList', type: :request do
   let(:user) { create(:user)}
 
-  let(:user_response) { { "email" => user.email } }
+  let(:user_response) { User.all.map { |user| user.slice(:id, :name) } }
 
   let(:token) { AuthToken.create(user_id: user.id) }
 
@@ -11,10 +11,10 @@ RSpec.describe 'CustomizeProfileInfo', type: :request do
 
   let(:headers) { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
 
-  before { get '/profile', params: {} , headers: headers }
+  before { get '/users', params: {} , headers: headers }
 
   context 'with valid params' do
-    it('returns authenticated user') { expect(JSON.parse(response.body)).to eq user_response }
+    it('returns users collection') { expect(JSON.parse(response.body)).to eq user_response }
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
   end

@@ -6,14 +6,16 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   config.mock_with :rspec
-  
+
   config.order = :random
-  
+
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
 
   config.include Authorization
+  config.include Permitter
+  config.include FactoryBot::Syntax::Methods
 end
 
 # Checks for pending migrations before tests are run.

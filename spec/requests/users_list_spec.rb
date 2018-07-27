@@ -3,14 +3,12 @@ require 'rails_helper'
 RSpec.describe 'UsersList', type: :request do
   let!(:users) { create_list :user, 3, :with_auth_token }
 
-  let(:current_user) { users.sample }
+  describe 'Authorized' do
+    let(:current_user) { users.sample }
 
-  before { get '/users', params: {} , headers: authorized_headers(current_user.auth_token.value) }
+    before { get '/users', params: {} , headers: authorized_headers(current_user.auth_token.value) }
 
-  context do
-    it do
-      expect { JSON.parse response.body }.not_to raise_error
-    end
+    it { expect { JSON.parse response.body }.not_to raise_error }
 
     let(:parsed_response) { JSON.parse response.body }
 
@@ -23,5 +21,11 @@ RSpec.describe 'UsersList', type: :request do
     end
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
+  end
+
+  describe 'Not Authorized' do
+    before { get '/users', params: {} , headers: not_authorized_headers }
+
+    it('returns HTTP Status Code 200') { expect(response).to have_http_status 401 }
   end
 end

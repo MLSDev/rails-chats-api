@@ -1,20 +1,24 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
-
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails', '~> 5.2'
 gem 'sqlite3'
 gem 'puma'
 gem 'bcrypt'
 gem 'uglifier'
+gem 'bootsnap', require: false
+# gem 'bcrypt'
+# gem 'redis'
+# gem 'mini_magick'
+
+group :development do
+  gem 'listen'
+  gem 'spring'
+  gem 'spring-watcher-listen'
+end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'listen'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
   gem 'faker'

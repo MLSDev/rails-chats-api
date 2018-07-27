@@ -44,6 +44,8 @@ GEM
       tzinfo (~> 1.1)
     arel (9.0.0)
     bcrypt (3.1.12)
+    bootsnap (1.3.1)
+      msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
     coderay (1.1.2)
@@ -80,6 +82,7 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    msgpack (1.2.4)
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -154,6 +157,11 @@ GEM
       activesupport (>= 3)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
+    spring (2.0.2)
+      activesupport (>= 4.2)
+    spring-watcher-listen (2.0.1)
+      listen (>= 2.7, < 4.0)
+      spring (>= 1.2, < 3.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -177,6 +185,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  bootsnap
   factory_bot_rails
   faker
   listen
@@ -189,11 +198,10 @@ DEPENDENCIES
   rspec-rails
   shoulda-callback-matchers
   shoulda-matchers
+  spring
+  spring-watcher-listen
   sqlite3
   uglifier
-
-RUBY VERSION
-   ruby 2.5.1p57
 
 BUNDLED WITH
    1.16.1

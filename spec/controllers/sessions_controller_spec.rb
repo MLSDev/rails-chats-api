@@ -4,7 +4,11 @@ RSpec.describe SessionsController, type: :controller do
   describe '#create.json' do
     let(:session) { double }
 
-    let(:params) { { session: { email: 'kathy@hartlova.com', password: 'bigboobs' } } }
+    let(:password) { FFaker::Internet.password }
+
+    let(:email) { FFaker::Internet.email }
+
+    let(:params) { { session: { email: email, password: password } } }
 
     let(:permitted_params) { permit_params! params, :session }
 

@@ -30,6 +30,6 @@ RSpec.describe 'UsersList', type: :request do
   describe 'Not Authorized' do
     before { get '/users', params: {} , headers: not_authorized_headers }
 
-    it('returns HTTP Status Code 200') { expect(response).to have_http_status :unauthorized }
+    it('returns HTTP Status Code 401') { expect(response).to have_http_status :unauthorized }
   end
 end

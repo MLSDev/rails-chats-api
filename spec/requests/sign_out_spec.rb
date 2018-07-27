@@ -18,6 +18,6 @@ RSpec.describe 'SignOut', type: :request do
 
     before { user.reload }
 
-    it('returns HTTP Status Code 204') { expect(response).to have_http_status :unauthorized }
+    it('returns HTTP Status Code 401') { expect(response).to have_http_status :unauthorized }
   end
 end

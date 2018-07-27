@@ -19,9 +19,9 @@ RSpec.describe 'ProfileRequest', type: :request do
     it do
       expect(parsed_response['id'].to_s).to eq user.id.to_s
 
-      expect(parsed_response['name'].to_s).to eq user&.name.to_s
+      expect(parsed_response['name'].to_s).to eq user.name.to_s if user.respond_to?(:user)
 
-      expect(parsed_response['name'].to_s).to_not be_empty
+      expect(parsed_response['name'].to_s).to_not be_nil
     end
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }

@@ -1,2 +1,2 @@
-class Chat < ActiveRecord::Base
+class Chat < ApplicationRecord
 end

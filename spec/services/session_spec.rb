@@ -1,14 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Session do
-  subject { Session.new email: 'kathy@hartlova.com', password: 'bigboobs' }
+  let(:password) { }
+
+  let(:email) { }
+
+  subject { Session.new email:  email, password: password }
 
   it { should delegate_method(:auth_token).to(:user) }
 
   it { should delegate_method(:auth_token_value).to(:auth_token).as(:value) }
 
   describe '#user' do
-    before { expect(User).to receive(:find_by).with(email: 'kathy@hartlova.com').and_return(:user) }
+    before { expect(User).to receive(:find_by).with(email: email).and_return(:user) }
 
     its(:user) { should eq :user }
   end
@@ -19,20 +23,20 @@ RSpec.describe Session do
     before { expect(subject).to receive(:user).and_return(user) }
 
     context do
-      before { expect(user).to receive(:authenticate).with('bigboobs').and_return(true) }
+      before { expect(user).to receive(:authenticate).with(password).and_return(true) }
 
       its(:password?) { should eq true }
     end
 
     context do
-      before { expect(user).to receive(:authenticate).with('bigboobs').and_return(false) }
+      before { expect(user).to receive(:authenticate).with(password).and_return(false) }
 
       its(:password?) { should eq false }
     end
   end
 
   describe '#valid?' do
-    let(:session) { Session.new email: 'kathy@hartlova.com', password: 'bigboobs' }
+    let(:session) { Session.new email: email, password: password }
 
     subject { session.errors }
 

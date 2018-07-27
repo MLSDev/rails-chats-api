@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'UsersList', type: :request do
-  let!(:users) { create_list :user, 3, :with_auth_token }
+  let!(:users) do
+    create_list :user, 3, :with_auth_token, :with_expected_additional_columns
+  rescue
+    create_list :user, 3, :with_auth_token
+  end
 
   describe 'Authorized' do
     let(:current_user) { users.sample }

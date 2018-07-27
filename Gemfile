@@ -21,7 +21,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
-  gem 'faker'
+  gem 'ffaker'
   gem 'database_rewinder'
 end
 

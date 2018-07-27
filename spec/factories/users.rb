@@ -1,13 +1,15 @@
 FactoryBot.define do
   factory :user do
-    name     { Faker::Internet.user_name } if User.new.attributes.symbolize_keys.include?(:name)
+    email    { FFaker::Internet.email }
 
-    email    { Faker::Internet.email }
-
-    password { Faker::Internet.password }
+    password { FFaker::Internet.password }
 
     trait :with_auth_token do
       association :auth_token
+    end
+
+    trait :with_expected_additional_columns do
+      name { FFaker::Internet.user_name }
     end
   end
 end

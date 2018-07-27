@@ -1,5 +1,25 @@
 [![Build Status](https://travis-ci.org/MLSDev/rails-chats-api.svg?branch=master)](https://travis-ci.org/MLSDev/rails-chats-api)
 
+
+          ________         ________
+         /       /\       /       /|
+        /       /  \     /       / |
+       /_______/    \   /_______/  |
+      |         \    \ /        |  |
+      |          \    /         |  |
+      |           \  /          |  |
+      |            \/           |  |
+      |                         |  |
+      |        |\     /|        |  |
+      |        | \   //|        |  |
+      |        | |\_/  |        |  |
+      |        | |     |        |  /
+      |        | /     |        | /
+      |        |/      |        |/
+      +--------+       +--------
+
+
+
 # Rails Chats API - Sample Application
 
 ## Install

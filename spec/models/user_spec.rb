@@ -10,6 +10,4 @@ RSpec.describe User, type: :model do
   it { should have_one(:auth_token).dependent(:destroy) }
 
   it { should have_and_belong_to_many :chats }
-
-  it { expect { subject.send :name }.to_not raise_error }
 end

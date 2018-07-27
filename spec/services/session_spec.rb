@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Session do
-  let(:password) { }
+  let(:password) { FFaker::Internet.password }
 
-  let(:email) { }
+  let(:email) { FFaker::Internet.email }
 
   subject { Session.new email:  email, password: password }
 

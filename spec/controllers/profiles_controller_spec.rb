@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe ProfilesController, type: :controller do
   describe '#create.json' do
+    let(:password) { FFaker::Internet.password }
+
+    let(:email) { FFaker::Internet.email }
+
     let(:user) { stub_model User }
 
-    let(:params) { { user: { email: 'kathy@hartlova.com', password: 'bigboobs', password_confirmation: 'bigboobs' } } }
+    let(:params) { { user: { email: email, password: password, password_confirmation: password } } }
 
     let(:permitted_params) { permit_params! params, :user }
 
@@ -28,7 +32,7 @@ RSpec.describe ProfilesController, type: :controller do
   end
 
   context do
-    let(:user) { double }
+    let(:user) { stub_model User }
 
     before { sign_in user }
 

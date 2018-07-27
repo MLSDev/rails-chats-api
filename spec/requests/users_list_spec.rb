@@ -1,20 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe 'UsersList', type: :request do
-  let(:user) { create(:user)}
+  let!(:users) { create_list :user, 3, :with_auth_token }
 
-  let(:user_response) { User.all.map { |user| user.slice(:id, :name) } }
+  let(:current_user) { users.sample }
 
-  let(:token) { AuthToken.create(user_id: user.id) }
-
-  let(:value) { token.value }
-
-  let(:headers) { { 'Authorization' => "Token token=#{value}", 'Content-type' => 'application/json', 'Accept' => 'application/json' } }
-
-  before { get '/users', params: {} , headers: headers }
+  before { get '/users', params: {} , headers: authorized_headers(current_user.auth_token.value) }
 
   context do
-    it('returns users collection') { expect(JSON.parse(response.body)).to eq user_response }
+    it do
+      expect { JSON.parse response.body }.not_to raise_error
+    end
+
+    let(:parsed_response) { JSON.parse response.body }
+
+    it do
+      expect(parsed_response).to have_exactly(3).items
+
+      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['id'] }).to match_array User.pluck(:id)
+      end
+    end
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
   end

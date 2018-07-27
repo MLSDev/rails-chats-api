@@ -1,6 +1,8 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+
 require 'rspec/rails'
+require 'rspec/collection_matchers'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
@@ -13,8 +15,13 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
+  config.before(:suite) { DatabaseRewinder.clean_all }
+
+  config.after(:each) { DatabaseRewinder.clean }
+
   config.include Authorization
   config.include Permitter
+  config.include Headers
   config.include FactoryBot::Syntax::Methods
 end
 

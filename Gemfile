@@ -22,12 +22,14 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'database_rewinder'
 end
 
 group :test do
   gem 'shoulda-matchers'
   gem 'rspec-its'
   gem 'rspec-activemodel-mocks'
+  gem 'rspec-collection_matchers'
   gem 'shoulda-callback-matchers'
   gem 'rails-controller-testing'
 end

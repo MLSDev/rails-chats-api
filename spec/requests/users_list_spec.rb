@@ -24,12 +24,12 @@ RSpec.describe 'UsersList', type: :request do
       end
     end
 
-    it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
+    it('returns HTTP Status Code 200') { expect(response).to have_http_status :ok }
   end
 
   describe 'Not Authorized' do
     before { get '/users', params: {} , headers: not_authorized_headers }
 
-    it('returns HTTP Status Code 200') { expect(response).to have_http_status 401 }
+    it('returns HTTP Status Code 200') { expect(response).to have_http_status :unauthorized }
   end
 end

@@ -24,6 +24,6 @@ RSpec.describe 'ProfileRequest', type: :request do
       expect(parsed_response['name'].to_s).to_not be_nil
     end
 
-    it('returns HTTP Status Code 200') { expect(response).to have_http_status 200 }
+    it('returns HTTP Status Code 200') { expect(response).to have_http_status :ok }
   end
 end

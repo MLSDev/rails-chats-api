@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'ProfileRequest', type: :request do
   let!(:user) do
-    create :user, :with_auth_token, :with_expected_additional_columns
-  rescue
-    create :user, :with_auth_token
+    if ActiveRecord::Base.connection.column_exists?(:users, :name)
+      create :user, :with_auth_token, :with_expected_additional_columns
+    else
+      create :user, :with_auth_token
+    end
   end
 
   let(:headers) { authorized_headers user.auth_token.value }
@@ -16,9 +18,9 @@ RSpec.describe 'ProfileRequest', type: :request do
 
     let(:parsed_response) { JSON.parse response.body }
 
-    it { expect(parsed_response['id'].to_s).to be_nil }
+    it { expect(parsed_response['id']).to be_nil }
 
-    it { expect(parsed_response['name'].to_s).to be_nil }
+    it { expect(parsed_response['name']).to be_nil }
 
     it { expect(parsed_response['password_digest']).to be_nil }
 

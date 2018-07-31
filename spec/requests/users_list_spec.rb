@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'UsersList', type: :request do
   let!(:users) do
-    create_list :user, 3, :with_auth_token, :with_expected_additional_columns
-  rescue
-    create_list :user, 3, :with_auth_token
+    if ActiveRecord::Base.connection.column_exists?(:users, :name)
+      create_list :user, 3, :with_auth_token, :with_expected_additional_columns
+    else
+      create_list :user, 3, :with_auth_token
+    end
   end
 
   describe 'Authorized' do
@@ -14,56 +16,25 @@ RSpec.describe 'UsersList', type: :request do
 
     it { expect { JSON.parse response.body }.not_to raise_error }
 
+    it { expect(ActiveRecord::Base.connection.column_exists?(:users, :name)).to be_truthy }
+
     let(:parsed_response) { JSON.parse response.body }
 
     it do
-      expect(parsed_response).to have_exactly(3).items
-    end
-
-    it do
-      expect(parsed_response).to be_a Array
-
-      parsed_response.each do |element|
-        expect(element).to be_an_instance_of Hash
-      end
-    end
-
-    it do
-      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['id'] }).to match_array(User.pluck(:id))
-      end
-    end
-
-    it do
-      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['name'] }.compact).to_not be_empty
-
-        expect(parsed_response.map { |user| user['name'] }).to match_array User.pluck(:name)
-      end
-    end
-
-    it do
-      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['email'] }).not_to match_array User.pluck(:email)
-      end
-    end
-
-    it do
-      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['password_digest'] }).not_to match_array User.pluck(:password_digest)
-      end
-    end
-
-    it do
-      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['created_at'] }).not_to match_array User.pluck(:created_at).map(&:iso8601)
-      end
-    end
-
-    it do
-      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['updated_at'] }).not_to match_array User.pluck(:updated_at).map(&:iso8601)
-      end
+      expect(parsed_response).to match([
+        {
+          id:   users.first.id,
+          name: ( users.first.respond_to?(:name) ? users.first.name : 'NAME SHOULD NOT BE NIL!' ),
+        },
+        {
+          id:   users.second.id,
+          name: ( users.second.respond_to?(:name) ? users.second.name : 'NAME SHOULD NOT BE NIL!' ),
+        },
+        {
+          id:   users.third.id,
+          name: ( users.third.respond_to?(:name) ? users.third.name : 'NAME SHOULD NOT BE NIL!' ),
+        }
+      ])
     end
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status :ok }

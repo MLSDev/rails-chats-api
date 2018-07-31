@@ -16,7 +16,7 @@ RSpec.describe 'ProfileRequest', type: :request do
 
     let(:parsed_response) { JSON.parse response.body }
 
-    it { expect(parsed_response['id'].to_s).to_not eq user.id.to_s }
+    it { expect(parsed_response['id'].to_s).to be_nil }
 
     it { expect(parsed_response['name'].to_s).to be_nil }
 

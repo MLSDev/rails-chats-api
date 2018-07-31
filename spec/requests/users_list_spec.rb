@@ -21,6 +21,14 @@ RSpec.describe 'UsersList', type: :request do
     end
 
     it do
+      expect(parsed_response).to be_a Array
+
+      parsed_response.each do |element|
+        expect(element).to be_an_instance_of Hash
+      end
+    end
+
+    it do
       if parsed_response.map { |user| user.respond_to?(:[]) }.all?
         expect(parsed_response.map { |user| user['id'] }).to match_array(User.pluck(:id))
       end

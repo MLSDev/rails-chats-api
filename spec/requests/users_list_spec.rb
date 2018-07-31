@@ -22,12 +22,14 @@ RSpec.describe 'UsersList', type: :request do
 
     it do
       if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['id'].to_i }).to match_array User.pluck(:id)
+        expect(parsed_response.map { |user| user['id'] }).to match_array(User.pluck(:id))
       end
     end
 
     it do
       if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['name'] }.compact).to_not be_empty
+
         expect(parsed_response.map { |user| user['name'] }).to match_array User.pluck(:name)
       end
     end

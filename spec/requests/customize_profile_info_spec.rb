@@ -16,13 +16,19 @@ RSpec.describe 'ProfileRequest', type: :request do
 
     let(:parsed_response) { JSON.parse response.body }
 
-    it do
-      expect(parsed_response['id'].to_s).to eq user.id.to_s
+    it { expect(parsed_response['id'].to_s).to eq user.id.to_s }
 
-      expect(parsed_response['name'].to_s).to eq user.name.to_s if user.respond_to?(:user)
+    it { expect(parsed_response['name'].to_s).to eq user.name.to_s if user.respond_to?(:user) }
 
-      expect(parsed_response['name'].to_s).to_not be_nil
-    end
+    it { expect(parsed_response['name'].to_s).to_not be_nil }
+
+    it { expect(parsed_response['password_digest']).to be_nil }
+
+    it { expect(parsed_response['created_at']).to be_nil }
+
+    it { expect(parsed_response['updated_at']).to be_nil }
+
+    it { expect(parsed_response['email']).to eq user.email }
 
     it('returns HTTP Status Code 200') { expect(response).to have_http_status :ok }
   end

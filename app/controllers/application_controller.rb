@@ -33,21 +33,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate!
     authenticate_or_request_with_http_token do |token, options|
-      @current_auth_token_value = token
-
       @current_user = User.joins(:auth_token).find_by auth_tokens: { value: token }
     end
-  end
-
-  def authenticate
-    authenticate_with_http_token do |token, options|
-      @current_auth_token_value = token
-
-      @current_user = User.joins(:auth_token).find_by auth_tokens: { value: token }
-    end
-  end
-
-  def current_auth_token
-    @current_auth_token ||= AuthToken.find_by_value current_auth_token_value
   end
 end

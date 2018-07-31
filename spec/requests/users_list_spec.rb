@@ -18,9 +18,41 @@ RSpec.describe 'UsersList', type: :request do
 
     it do
       expect(parsed_response).to have_exactly(3).items
+    end
 
+    it do
       if parsed_response.map { |user| user.respond_to?(:[]) }.all?
-        expect(parsed_response.map { |user| user['id'] }).to match_array User.pluck(:id)
+        expect(parsed_response.map { |user| user['id'].to_i }).to match_array User.pluck(:id)
+      end
+    end
+
+    it do
+      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['name'] }).to match_array User.pluck(:name)
+      end
+    end
+
+    it do
+      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['email'] }).not_to match_array User.pluck(:email)
+      end
+    end
+
+    it do
+      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['password_digest'] }).not_to match_array User.pluck(:password_digest)
+      end
+    end
+
+    it do
+      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['created_at'] }).not_to match_array User.pluck(:created_at).map(&:iso8601)
+      end
+    end
+
+    it do
+      if parsed_response.map { |user| user.respond_to?(:[]) }.all?
+        expect(parsed_response.map { |user| user['updated_at'] }).not_to match_array User.pluck(:updated_at).map(&:iso8601)
       end
     end
 

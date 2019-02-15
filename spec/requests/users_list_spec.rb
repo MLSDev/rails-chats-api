@@ -23,16 +23,16 @@ RSpec.describe 'UsersList', type: :request do
     it do
       expect(parsed_response).to match([
         {
-          id:   users.first.id,
-          name: ( users.first.respond_to?(:name) ? users.first.name : 'NAME SHOULD NOT BE NIL!' ),
+          "id"   => users.first.id,
+          "name" => ( users.first.respond_to?(:name) ? users.first.name : 'NAME SHOULD NOT BE NIL!' ),
         },
         {
-          id:   users.second.id,
-          name: ( users.second.respond_to?(:name) ? users.second.name : 'NAME SHOULD NOT BE NIL!' ),
+          "id"   => users.second.id,
+          "name" => ( users.second.respond_to?(:name) ? users.second.name : 'NAME SHOULD NOT BE NIL!' ),
         },
         {
-          id:   users.third.id,
-          name: ( users.third.respond_to?(:name) ? users.third.name : 'NAME SHOULD NOT BE NIL!' ),
+          "id"   => users.third.id,
+          "name" => ( users.third.respond_to?(:name) ? users.third.name : 'NAME SHOULD NOT BE NIL!' ),
         }
       ])
     end
